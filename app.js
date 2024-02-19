@@ -1,8 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import UsersRouter from "./routes/users.router.js";
-import ResumeRouter from "./routes/resumes.router.js";
-import LikeRouter from "./routes/likes.router.js";
+import UsersRouter from "./src/routes/users.router.js";
+import ResumeRouter from "./src/routes/resume.router.js";
+import LikeRouter from "./src/routes/likes.router.js";
 
 const app = express();
 const PORT = 3018;
