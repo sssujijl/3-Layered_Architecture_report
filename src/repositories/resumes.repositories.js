@@ -16,7 +16,7 @@ export class resumeRepository {
         return resume;
     }
 
-    viewallResumes = async (orderKey, orderValue) => {
+    findAllResumes = async (orderKey, orderValue) => {
 
         const resumes = await prisma.resumes.findMany({
             orderBy: {
@@ -25,5 +25,42 @@ export class resumeRepository {
         });
 
         return resumes;
+    }
+
+    findResume = async (resumeId) => {
+
+        const resume = await prisma.resumes.findFirst({ where: { resumeId: +resumeId } });
+
+        return resume;
+    }
+
+    editResume = async (resumeId, userId, title, content, status) => {
+
+        const resume = await prisma.Resumes.update({
+            where: {
+                resumeId: +resumeId,
+                userId: +userId
+            },
+            data: {
+                title: title,
+                content: content,
+                status: status,
+            },
+        });
+
+        return resume;
+    }
+
+    deleteResume = async (resumeId, userId) => {
+
+        const resume = await prisma.resumes.delete({
+            where: {
+                resumeId: +resumeId,
+                userId: +userId
+            }
+        });
+
+        console.log(resume);
+        return resume;
     }
 }

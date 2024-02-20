@@ -17,24 +17,75 @@ export class resumesController {
 
             return res.status(201).json({ data: resume });
 
-        } catch(err) {
+        } catch (err) {
             next(err);
         }
     }
 
-    viewallResumes = async (req, res, next) => {
+    findAllResumes = async (req, res, next) => {
         try {
             const orderKey = req.query.orderKey;
             const orderValue = req.query.orderValue;
 
-            const resumes = await this.resumeService.viewallResumes(
+            const resumes = await this.resumeService.findAllResumes(
                 orderKey,
                 orderValue
             );
 
             return res.status(200).json({ data: resumes });
 
-        } catch(err) {
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    findResume = async (req, res, next) => {
+        try {
+            const { resumeId } = req.params;
+
+            const resume = await this.resumeService.findResume(resumeId);
+
+            return res.status(200).json({ data: resume });
+
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    editResume = async (req, res, next) => {
+        try {
+            const { resumeId } = req.params;
+            const { userId } = req.user;
+            const { title, content, status } = req.body;
+
+            const resume = await this.resumeService.editResume(
+                resumeId,
+                userId,
+                title,
+                content,
+                status
+            );
+
+            return res.status(200).json({ data: resume });
+
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    deleteResume = async (req, res, next) => {
+        try {
+            const { resumeId } = req.params;
+            const { userId } = req.user;
+
+            const resume = await this.resumeService.deleteResume(
+                resumeId,
+                userId
+            );
+
+            return res.status(200).json({ message: "해당 이력서를 삭제하였습니다." });
+
+        } catch (err) {
             next(err);
         }
     }
