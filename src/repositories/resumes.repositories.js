@@ -15,4 +15,15 @@ export class resumeRepository {
 
         return resume;
     }
+
+    viewallResumes = async (orderKey, orderValue) => {
+
+        const resumes = await prisma.resumes.findMany({
+            orderBy: {
+                [orderKey]: orderValue.toLowerCase()
+            },
+        });
+
+        return resumes;
+    }
 }

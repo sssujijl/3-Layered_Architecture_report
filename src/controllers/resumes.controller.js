@@ -5,19 +5,36 @@ export class resumesController {
 
     createResume = async (req, res, next) => {
         try {
-            const {userId, name} = req.user;
+            const { userId, name } = req.user;
             const { title, content } = req.body;
 
-            const createResume = await this.resumeService.createResume(
+            const resume = await this.resumeService.createResume(
                 userId,
                 name,
                 title,
                 content
             );
 
-            return res.status(201).json({ data: createResume });
+            return res.status(201).json({ data: resume });
 
-        } catch (err) {
+        } catch(err) {
+            next(err);
+        }
+    }
+
+    viewallResumes = async (req, res, next) => {
+        try {
+            const orderKey = req.query.orderKey;
+            const orderValue = req.query.orderValue;
+
+            const resumes = await this.resumeService.viewallResumes(
+                orderKey,
+                orderValue
+            );
+
+            return res.status(200).json({ data: resumes });
+
+        } catch(err) {
             next(err);
         }
     }

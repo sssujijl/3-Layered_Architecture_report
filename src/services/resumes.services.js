@@ -14,4 +14,18 @@ export class resumeService {
 
         return createResume;
     }
+
+    viewallResumes = async (orderKey, orderValue) => {
+
+        const resumes = await this.resumeRepository.viewallResumes(
+            orderKey,
+            orderValue
+        )
+
+        if(!resumes) {
+            return res.status(404).json({ message: "이력서 조회에 실패하였습니다." });
+        }
+
+        return resumes;
+    }
 }
