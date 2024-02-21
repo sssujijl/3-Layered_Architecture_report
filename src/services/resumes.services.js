@@ -3,13 +3,13 @@ import { resumeRepository } from '../repositories/resumes.repositories.js'
 export class resumeService {
     resumeRepository = new resumeRepository();
 
-    createResume = async (res, userId, name, title, content) => {
+    createResume = async (userId, name, title, content) => {
 
         if (title.length === 0) {
             throw new Error('제목을 입력하세요.');
-          } else if (content.length === 0) {
+        } else if (content.length === 0) {
             throw new Error('자기소개를 입력하세요.');
-          }
+        }
 
         const createResume = await this.resumeRepository.createResume(
             userId,
@@ -21,7 +21,7 @@ export class resumeService {
         return createResume;
     }
 
-    findAllResumes = async (res, orderKey, orderValue) => {
+    findAllResumes = async (orderKey, orderValue) => {
 
         const resumes = await this.resumeRepository.findAllResumes(
             orderKey,
@@ -35,7 +35,7 @@ export class resumeService {
         return resumes;
     }
 
-    findResume = async (res, resumeId) => {
+    findResume = async (resumeId) => {
 
         const resume = await this.resumeRepository.findResume(resumeId);
 
@@ -56,7 +56,7 @@ export class resumeService {
         }
     }
 
-    editResume = async (res, resumeId, userId, title, content, status) => {
+    editResume = async (resumeId, userId, title, content, status) => {
 
         const id = await this.resumeRepository.findResume(resumeId);
 
@@ -87,7 +87,7 @@ export class resumeService {
         }
     }
 
-    deleteResume = async (res, resumeId, userId) => {
+    deleteResume = async (resumeId, userId) => {
 
         const id = await this.resumeRepository.findResume(resumeId);
 

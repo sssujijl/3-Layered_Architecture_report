@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "repository": "https://github.com/sssujijl/3-Layered_Architecture_report.git",
-  "author": "sssujijl <leesuji1998@naver.com>",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js",
-    "format": "prettier --write *.js **/*.js"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
+  "repository": "https://github.com/sssujijl/3-Layered_Architecture_report.git",
+  "author": "sssujijl <leesuji1998@naver.com>",
   "dependencies": {
     "@prisma/client": "^5.9.0",
     "bcrypt": "^5.1.1",
@@ -19,7 +18,10 @@
     "prisma": "^5.9.0"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.1",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.3",
     "prettier": "^3.2.4"
   }

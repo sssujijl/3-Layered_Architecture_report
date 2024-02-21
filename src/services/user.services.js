@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 export class usersServices {
     userRepository = new usersRepositories();
 
-    signup = async (res, email, password, confirmpassword, name) => {
+    signup = async (email, password, confirmpassword, name) => {
 
         if (email.length === 0) {
             throw new Error('이메일을 입력하세요.');
