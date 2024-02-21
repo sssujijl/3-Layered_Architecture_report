@@ -1,9 +1,16 @@
 import express from 'express';
+import { prisma } from '../modules/index.js';
 import { verificationToken } from "../middlewares/middleware.js";
 import { resumesController } from '../controllers/resumes.controller.js';
+import { resumesService } from '../services/resumes.services.js';
+import { resumesRepository } from '../repositories/resumes.repositories.js';
 
 const router = express.Router();
-const resumeController = new resumesController();
+const resumeRepository = new resumesRepository(prisma);
+const resumeService = new resumesService(resumeRepository);
+const resumeController = new resumesController(resumeService);
+
+
 
 // 이력서 생성
 router.post('/', verificationToken, resumeController.createResume);

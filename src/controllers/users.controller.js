@@ -1,8 +1,8 @@
 import { newCreateToken, createTokens } from "../middlewares/middleware.js";
 
 export class usersController {
-    constructor(usersServices) {
-        this.usersServices = usersServices;
+    constructor(userServices) {
+        this.userServices = userServices;
     }
 
     signup = async (req, res, next) => {

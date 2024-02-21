@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 
 export class usersServices {
-    constructor(usersRepositories) {
-        this.usersRepositories = usersRepositories;
+    constructor(userRepositories) {
+        this.userRepositories = userRepositories;
     }
 
     signup = async (email, password, confirmpassword, name) => {
@@ -18,7 +18,7 @@ export class usersServices {
             throw new Error('이메일 형식이 틀립니다.');
         }
 
-        const isExistUser = await this.userRepository.findUserByemail(email);
+        const isExistUser = await this.userRepositories.findUserByemail(email);
         if (isExistUser) {
             throw new Error('이미 존재하는 이메일입니다.');
         }
@@ -33,7 +33,7 @@ export class usersServices {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = await this.userRepository.signup(
+        const user = await this.userRepositories.signup(
             email,
             hashedPassword,
             name
@@ -47,7 +47,7 @@ export class usersServices {
 
     login = async (email, password) => {
 
-        const user = await this.userRepository.findUserByemail(email)
+        const user = await this.userRepositories.findUserByemail(email)
 
         if (!user) {
             throw new Error('존재하지 않는 이메일입니다.');
@@ -60,7 +60,7 @@ export class usersServices {
 
     checkInformation = async (userId) => {
 
-        const user = await this.userRepository.findUserByuserId(userId);
+        const user = await this.userRepositories.findUserByuserId(userId);
 
         return {
             userId: user.userId,
