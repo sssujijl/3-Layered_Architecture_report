@@ -1,7 +1,7 @@
-import { resumeRepository } from '../repositories/resumes.repositories.js'
-
-export class resumeService {
-    resumeRepository = new resumeRepository();
+export class resumesService {
+    constructor(resumeRepository) {
+        this.resumeRepository = resumeRepository;
+    }
 
     createResume = async (userId, name, title, content) => {
 

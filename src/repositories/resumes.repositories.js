@@ -1,10 +1,12 @@
-import { prisma } from "../modules/index.js";
+export class resumesRepository {
 
-export class resumeRepository {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
 
     createResume = async (userId, name, title, content) => {
 
-        const resume = await prisma.resumes.create({
+        const resume = await this.prisma.resumes.create({
             data: {
                 userId: +userId,
                 title,
@@ -18,7 +20,7 @@ export class resumeRepository {
 
     findAllResumes = async (orderKey, orderValue) => {
 
-        const resumes = await prisma.resumes.findMany({
+        const resumes = await this.prisma.resumes.findMany({
             orderBy: {
                 [orderKey]: orderValue.toLowerCase()
             },
@@ -29,14 +31,14 @@ export class resumeRepository {
 
     findResume = async (resumeId) => {
 
-        const resume = await prisma.resumes.findFirst({ where: { resumeId: +resumeId } });
+        const resume = await this.prisma.resumes.findFirst({ where: { resumeId: +resumeId } });
 
         return resume;
     }
 
     editResume = async (resumeId, userId, title, content, status) => {
 
-        const resume = await prisma.Resumes.update({
+        const resume = await this.prisma.resumes.update({
             where: {
                 resumeId: +resumeId,
                 userId: +userId
@@ -53,7 +55,7 @@ export class resumeRepository {
 
     deleteResume = async (resumeId, userId) => {
 
-        const resume = await prisma.resumes.delete({
+        const resume = await this.prisma.resumes.delete({
             where: {
                 resumeId: +resumeId,
                 userId: +userId

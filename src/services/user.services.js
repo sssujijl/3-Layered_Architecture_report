@@ -1,8 +1,9 @@
-import { usersRepositories } from '../repositories/user.repositories.js'
 import bcrypt from "bcrypt";
 
 export class usersServices {
-    userRepository = new usersRepositories();
+    constructor(usersRepositories) {
+        this.usersRepositories = usersRepositories;
+    }
 
     signup = async (email, password, confirmpassword, name) => {
 

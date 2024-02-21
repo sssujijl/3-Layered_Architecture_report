@@ -1,8 +1,9 @@
-import { usersServices } from '../services/user.services.js'
 import { newCreateToken, createTokens } from "../middlewares/middleware.js";
 
 export class usersController {
-    userServices = new usersServices();
+    constructor(usersServices) {
+        this.usersServices = usersServices;
+    }
 
     signup = async (req, res, next) => {
         try {
