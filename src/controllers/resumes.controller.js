@@ -24,8 +24,8 @@ export class ResumesController {
 
     findAllResumes = async (req, res, next) => {
         try {
-            const orderKey = req.query.orderKey;
-            const orderValue = req.query.orderValue;
+            const orderKey = req.query.orderKey || 'createdAt';
+            const orderValue = req.query.orderValue || 'desc';
 
             const resumes = await this.resumeService.findAllResumes(
                 orderKey,

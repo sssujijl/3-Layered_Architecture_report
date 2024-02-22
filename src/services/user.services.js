@@ -7,10 +7,14 @@ export class UsersServices {
 
     signup = async (email, password, confirmpassword, name) => {
 
-        if (email.length === 0) {
+        if (!email) {
             throw new Error('이메일을 입력하세요.');
-        } else if (name.length === 0) {
+        } else if (!name) {
             throw new Error('이름을 입력하세요.');
+        } else if (!password) {
+            throw new Error('비밀번호를 입력하세요.');
+        } else if (!confirmpassword) {
+            throw new Error('비밀번호 확인을 입력하세요.');
         }
 
         const emailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
@@ -47,6 +51,12 @@ export class UsersServices {
 
     login = async (email, password) => {
 
+        if (!email) {
+            throw new Error('이메일을 입력하세요.');
+        } else if (!password) {
+            throw new Error('비밀번호를 입력하세요.');
+        }
+
         const user = await this.userRepositories.findUserByemail(email)
 
         if (!user) {
@@ -69,4 +79,3 @@ export class UsersServices {
         }
     }
 }
-// throw new Error('');

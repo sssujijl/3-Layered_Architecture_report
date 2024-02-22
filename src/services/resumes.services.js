@@ -5,9 +5,9 @@ export class ResumesService {
 
     createResume = async (userId, name, title, content) => {
 
-        if (title.length === 0) {
+        if (!title) {
             throw new Error('제목을 입력하세요.');
-        } else if (content.length === 0) {
+        } else if (!content) {
             throw new Error('자기소개를 입력하세요.');
         }
 
@@ -37,6 +37,10 @@ export class ResumesService {
 
     findResume = async (resumeId) => {
 
+        if(!resumeId) {
+            throw new Error('이력서를 선택하세요.')
+        }
+
         const resume = await this.resumeRepository.findResume(resumeId);
 
         if (!resume) {
@@ -57,6 +61,16 @@ export class ResumesService {
     }
 
     editResume = async (resumeId, userId, title, content, status) => {
+
+        if (!resumeId) {
+            throw new Error('이력서를 선택하세요.');
+        } else if (!title) {
+            throw new Error('제목을 입력하세요.');
+        } else if (!content) {
+            throw new Error('내용을 입력하세요.');
+        } else if (!status) {
+            throw new Error('상태를 입력하세요.');
+        }
 
         const id = await this.resumeRepository.findResume(resumeId);
 
@@ -89,6 +103,10 @@ export class ResumesService {
 
     deleteResume = async (resumeId, userId) => {
 
+        if(!resumeId) {
+            throw new Error('이력서를 선택하세요.')
+        }
+        
         const id = await this.resumeRepository.findResume(resumeId);
 
         if (!id) {
