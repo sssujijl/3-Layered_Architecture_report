@@ -1,6 +1,6 @@
 import { newCreateToken, createTokens } from "../middlewares/middleware.js";
 
-export class usersController {
+export class UsersController {
     constructor(userServices) {
         this.userServices = userServices;
     }

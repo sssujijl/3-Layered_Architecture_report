@@ -1,4 +1,4 @@
-export class resumesController {
+export class ResumesController {
     constructor(resumeService) {
         this.resumeService = resumeService;
     }

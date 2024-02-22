@@ -1,14 +1,14 @@
 import express from 'express';
 import { prisma } from '../modules/index.js';
 import { verificationToken } from '../middlewares/middleware.js';
-import { usersController } from '../controllers/users.controller.js'
-import { usersServices } from '../services/user.services.js';
-import { usersRepositories } from '../repositories/user.repositories.js';
+import { UsersController } from '../controllers/users.controller.js'
+import { UsersServices } from '../services/user.services.js';
+import { UsersRepository } from '../repositories/user.repositories.js';
 
 const router = express.Router();
-const userRepositories = new usersRepositories(prisma);
-const userServices = new usersServices(userRepositories);
-const userController = new usersController(userServices);
+const userRepositories = new UsersRepository(prisma);
+const userServices = new UsersServices(userRepositories);
+const userController = new UsersController(userServices);
 
 // 회원가입 API
 router.post('/sign-up', userController.signup);

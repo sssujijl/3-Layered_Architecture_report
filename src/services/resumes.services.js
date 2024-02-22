@@ -1,4 +1,4 @@
-export class resumesService {
+export class ResumesService {
     constructor(resumeRepository) {
         this.resumeRepository = resumeRepository;
     }

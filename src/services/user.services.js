@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-export class usersServices {
+export class UsersServices {
     constructor(userRepositories) {
         this.userRepositories = userRepositories;
     }

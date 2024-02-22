@@ -1,14 +1,14 @@
 import express from 'express';
 import { prisma } from '../modules/index.js';
 import { verificationToken } from "../middlewares/middleware.js";
-import { resumesController } from '../controllers/resumes.controller.js';
-import { resumesService } from '../services/resumes.services.js';
-import { resumesRepository } from '../repositories/resumes.repositories.js';
+import { ResumesController } from '../controllers/resumes.controller.js';
+import { ResumesService } from '../services/resumes.services.js';
+import { ResumesRepository } from '../repositories/resumes.repositories.js';
 
 const router = express.Router();
-const resumeRepository = new resumesRepository(prisma);
-const resumeService = new resumesService(resumeRepository);
-const resumeController = new resumesController(resumeService);
+const resumeRepository = new ResumesRepository(prisma);
+const resumeService = new ResumesService(resumeRepository);
+const resumeController = new ResumesController(resumeService);
 
 
 
